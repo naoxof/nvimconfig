@@ -1,0 +1,133 @@
+" setting
+"文字コードをUFT-8に設定
+set fenc=utf-8
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
+" バッファが編集中でもその他のファイルを開けるように
+set hidden
+" 入力中のコマンドをステータスに表示する
+set showcmd
+" 行番号を表示
+" set number
+" スマートインデント
+set smartindent
+" 括弧入力時の対応する括弧を表示
+set showmatch
+" シンタックスハイライトの有効化
+syntax enable
+" 不可視文字を可視化(タブが「▸-」と表示される)
+set list listchars=tab:\▸\-
+" Tab文字を半角スペースにする
+set expandtab
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+set tabstop=4
+" 行頭でのTab文字の表示幅
+set shiftwidth=4
+" ESC2回押しで検索時のハイライトを消す
+nnoremap <ESC><ESC> :nohl<CR>
+" Leaderをスペースキーにする
+let mapleader = "\<Space>"
+" アンダースコアを単語の区切りとして認識させる
+set iskeyword+=_
+nnoremap <leader>* *''cgn
+" 新規タブでターミナルモードを起動
+nnoremap <silent> tt <cmd>terminal<CR>
+" 下分割でターミナルモードを起動
+nnoremap <silent> tx <cmd>belowright new<CR><cmd>terminal<CR><cmd>resize 10<CR>
+" ターミナルを開いたらに常にinsertモードに入る
+autocmd TermOpen * :startinsert
+"  ターミナルモードのキーバインド
+tnoremap <ESC> <C-\><C-n>
+tnoremap <C-W>n       <cmd>new<cr>
+tnoremap <C-W><C-N>   <cmd>new<cr>
+tnoremap <C-W>q       <cmd>quit<cr>
+tnoremap <C-W><C-Q>   <cmd>quit<cr>
+tnoremap <C-W>c       <cmd>bd!<cr>
+tnoremap <C-W><C-C>   <cmd>bd!<cr>
+tnoremap <C-W><C-W>   <cmd>bd!<cr>
+tnoremap <C-W><Down>  <cmd>wincmd j<cr>
+tnoremap <C-W><C-J>   <cmd>wincmd j<cr>
+tnoremap <C-W>j       <cmd>wincmd j<cr>
+tnoremap <C-W><Up>    <cmd>wincmd k<cr>
+tnoremap <C-W><C-K>   <cmd>wincmd k<cr>
+tnoremap <C-W>k       <cmd>wincmd k<cr>
+tnoremap <C-W><Left>  <cmd>wincmd h<cr>
+tnoremap <C-W><C-H>   <cmd>wincmd h<cr>
+tnoremap <C-W><BS>    <cmd>wincmd h<cr>
+tnoremap <C-W>h       <cmd>wincmd h<cr>
+tnoremap <C-W><Right> <cmd>wincmd l<cr>
+tnoremap <C-W><C-L>   <cmd>wincmd l<cr>
+tnoremap <C-W>l       <cmd>wincmd l<cr>
+
+" vim.dein設定用
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/Users/yoshinori.kasaya/.config/nvim/./repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('/Users/yoshinori.kasaya/.config/nvim/.')
+
+" Let dein manage dein
+" Required:
+call dein#add('/Users/yoshinori.kasaya/.config/nvim/./repos/github.com/Shougo/dein.vim')
+
+" Add or remove your plugins here like this:
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-surround')
+call dein#add('vimlab/split-term.vim')
+if exists('g:vscode')
+    " VSCode extension
+    call dein#add('vscode-neovim/vscode-multi-cursor.nvim')
+    "" vscode-multi-cursor の Lua モジュールを使ったキーマッピング
+    lua require('vscode-multi-cursor')
+    "
+    "" キーマッピングの設定（VimScript形式）
+    nnoremap mc :lua require('vscode-multi-cursor').create_cursor()<CR>
+    xnoremap mc :lua require('vscode-multi-cursor').create_cursor()<CR>
+    nnoremap mcc :lua require('vscode-multi-cursor').cancel()<CR>
+    nnoremap mi :lua require('vscode-multi-cursor').start_left()<CR>
+    xnoremap mi :lua require('vscode-multi-cursor').start_left()<CR>
+    nnoremap mI :lua require('vscode-multi-cursor').start_left_edge()<CR>
+    xnoremap mI :lua require('vscode-multi-cursor').start_left_edge()<CR>
+    nnoremap ma :lua require('vscode-multi-cursor').start_right()<CR>
+    xnoremap ma :lua require('vscode-multi-cursor').start_right()<CR>
+    nnoremap mA :lua require('vscode-multi-cursor').start_right()<CR>
+    xnoremap mA :lua require('vscode-multi-cursor').start_right()<CR>
+    nnoremap [mc :lua require('vscode-multi-cursor').prev_cursor()<CR>
+    nnoremap ]mc :lua require('vscode-multi-cursor').next_cursor()<CR>
+    nnoremap mcs :lua require('vscode-multi-cursor').flash_char()<CR>
+    nnoremap mcw :lua require('vscode-multi-cursor').flash_word()<CR>
+    nnoremap <C-d> mciw*<Cmd>nohl<CR>
+else
+    call dein#add('mg979/vim-visual-multi')
+endif
+"call dein#add('subnut/nvim-ghost.nvim')
+" easymotionインストール
+call dein#add('phaazon/hop.nvim')
+" hop
+lua require'hop'.setup()
+
+map <Leader>w :HopWord<CR>
+map <Leader>p :HopPattern<CR>
+map <Leader>l :HopLineStart<CR>
+map <Leader>c :HopChar1<CR>
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+"  call nvim_ghost#installer#install()
+endif
+"End dein Scripts-------------------------
+
