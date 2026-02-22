@@ -55,6 +55,35 @@ vim.keymap.set('n', 'tt', '<cmd>terminal<CR>', { silent = true })
 -- 下分割でターミナルモードを起動
 vim.keymap.set('n', 'tx', '<cmd>belowright new<CR><cmd>terminal<CR><cmd>resize 10<CR>', { silent = true })
 
+-- Ctrl-j でターミナルをトグル（下に表示）
+local _term_bufnr = nil
+local function toggle_terminal()
+  -- ターミナルウィンドウが表示中か探す
+  if _term_bufnr and vim.api.nvim_buf_is_valid(_term_bufnr) then
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      if vim.api.nvim_win_get_buf(win) == _term_bufnr then
+        -- 表示中なら閉じる
+        vim.api.nvim_win_close(win, true)
+        return
+      end
+    end
+    -- バッファはあるがウィンドウが無い→再表示
+    vim.cmd('botright split')
+    vim.cmd('resize 15')
+    vim.api.nvim_win_set_buf(0, _term_bufnr)
+    vim.cmd('startinsert')
+    return
+  end
+  -- 新規作成
+  vim.cmd('botright split')
+  vim.cmd('resize 15')
+  vim.cmd('terminal')
+  _term_bufnr = vim.api.nvim_get_current_buf()
+end
+
+vim.keymap.set('n', '<C-j>', toggle_terminal, { silent = true, desc = 'Toggle terminal' })
+vim.keymap.set('t', '<C-j>', function() toggle_terminal() end, { silent = true, desc = 'Close terminal' })
+
 -- ターミナルを開いたら常にinsertモードに入る
 vim.api.nvim_create_autocmd('TermOpen', {
   pattern = '*',
