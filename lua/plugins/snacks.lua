@@ -3,6 +3,7 @@ return {
   lazy=false,
   keys = {
     { "<leader>s", function() Snacks.explorer() end, desc = "Explorer (sidebar)" },
+    { "<leader><leader>", function() Snacks.picker.smart() end, desc = "Smart Find Files" }
   },
   opts = {
     explorer = {
