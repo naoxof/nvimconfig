@@ -1,0 +1,53 @@
+## Cheatsheet @cheatsheet
+チートシートを開く | <Space>?
+チートシートを編集する | :CheatsheetEdit
+
+## Snacks (Explorer / Picker) @snacks @explorer @picker
+ファイルエクスプローラーを開く | <Space>s
+ファイルをスマート検索 | <Space><Space>
+テキストをgrep検索 | <Space>r
+
+## Hop (画面内ジャンプ) @hop @motion
+単語にジャンプ | <Space>w
+パターンにジャンプ | <Space>p
+行頭にジャンプ | <Space>l
+1文字でジャンプ | <Space>c
+
+## vim-surround (囲み文字の操作) @surround
+囲み文字を変更 cs{old}{new} | cs"'
+囲み文字を削除 ds{char} | ds"
+テキストを囲む ys{motion}{char} | ysiw]
+行全体を囲む | yss)
+ビジュアル選択を囲む | S{char}
+
+## vim-commentary (コメント) @comment
+行をコメント切り替え | gcc
+選択範囲をコメント切り替え | gc
+モーション範囲をコメント | gc{motion}
+
+## dial.nvim (インクリメント/デクリメント) @dial @increment
+数値・日付・boolをインクリメント | <C-a>
+数値・日付・boolをデクリメント | <C-x>
+連番インクリメント | g<C-a>
+連番デクリメント | g<C-x>
+
+## hlchunk (インデントガイド) @indent @chunk
+自動表示 - チャンクとインデントを可視化 | (自動)
+
+## render-markdown @markdown
+Markdownファイルをリッチ表示 | (自動)
+
+## nvim-scrollbar @scrollbar
+スクロールバーを表示 | (自動)
+
+## ターミナル @terminal
+ターミナルをトグル表示 | <C-j>
+新規タブでターミナル | tt
+下分割でターミナル | tx
+ターミナルからノーマルモードへ | <ESC>
+
+## 基本操作 @basic
+検索ハイライトを消す | <ESC><ESC>
+選択して置換 (cgn) | <Space>*
+プラグイン管理UIを開く | :Lazy
+プラグインを同期 | :Lazy sync

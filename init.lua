@@ -145,111 +145,18 @@ vim.keymap.set('t', '<C-W>l', '<cmd>wincmd l<cr>', { silent = true })
 
 
 require("config.lazy")
-------
--- dpp
-------
--- 
--- local denops_src = vim.fn.stdpath("cache") .. "/dpp/repos/github.com/denops/denops.vim"
--- local dpp_src = vim.fn.stdpath("cache") .. "/dpp/repos/github.com/Shougo/dpp.vim"
--- local dpp_installer = vim.fn.stdpath("cache") .. "/dpp/repos/github.com/Shougo/dpp-ext-installer"
--- 
--- if not vim.loop.fs_stat(denops_src) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/vim-denops/denops.vim.git",
---     denops_src
---   })
---   vim.notify("Successfull denops.vim installed!", vim.log.levels.INFO)
--- end
--- 
--- if not vim.loop.fs_stat(dpp_src) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/Shougo/dpp.vim.git",
---     dpp_src
---   })
---   vim.notify("Successfull dpp.vim installed!", vim.log.levels.INFO)
--- end
--- 
--- if not vim.loop.fs_stat(dpp_installer) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/Shougo/dpp-ext-installer.git",
---     dpp_installer
---   })
---   vim.notify("Successfull dpp-ext-installer installed!", vim.log.levels.INFO)
--- end
--- 
--- local dpp_base = vim.fn.stdpath("cache") .. "/dpp"
--- 
--- local dpp_ext_toml = dpp_base .. "/repos/github.com/Shougo/dpp-ext-toml"
--- if not vim.loop.fs_stat(dpp_ext_toml) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/Shougo/dpp-ext-toml.git",
---     dpp_ext_toml
---   })
---   vim.notify("dpp-ext-toml installed!", vim.log.levels.INFO)
--- end
--- 
--- local dpp_ext_lazy = dpp_base .. "/repos/github.com/Shougo/dpp-ext-lazy"
--- if not vim.loop.fs_stat(dpp_ext_lazy) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/Shougo/dpp-ext-lazy.git",
---     dpp_ext_lazy
---   })
---   vim.notify("dpp-ext-lazy installed!", vim.log.levels.INFO)
--- end
--- 
--- local dpp_protocol_git = dpp_base .. "/repos/github.com/Shougo/dpp-protocol-git"
--- if not vim.loop.fs_stat(dpp_protocol_git) then
---   vim.fn.system({
---     "git",
---     "clone",
---     "https://github.com/Shougo/dpp-protocol-git.git",
---     dpp_protocol_git
---   })
---   vim.notify("dpp-protocol-git installed!", vim.log.levels.INFO)
--- end
--- 
--- 
--- -- runtimepath に追加
--- vim.opt.runtimepath:prepend(dpp_src)
--- vim.opt.runtimepath:prepend(dpp_ext_toml)
--- vim.opt.runtimepath:prepend(dpp_ext_lazy)
--- vim.opt.runtimepath:prepend(dpp_protocol_git)
--- 
--- -- dpp のロード設定
--- local dpp = require("dpp")
--- local dpp_config = vim.fn.stdpath("config") .. "/dpp/config.ts"
--- 
--- if dpp.load_state(dpp_base) then
---   -- Denops などが必要になるので、ここで追加
---   vim.opt.runtimepath:prepend(denops_src)
---   vim.opt.runtimepath:prepend(dpp_installer)
--- 
---   vim.api.nvim_create_autocmd("User", {
---     pattern = "DenopsReady",
---     callback = function()
---       vim.notify("dpp load_state() is failed")
---       dpp.make_state(dpp_base, dpp_config)
---     end,
---   })
--- end
--- 
--- vim.api.nvim_create_autocmd("User", {
---   pattern = "Dpp:makeStatePost",
---   callback = function()
---     vim.notify("dpp make_state() is done")
---   end,
--- })
--- 
--- -- 既存設定
--- vim.cmd("filetype indent plugin on")
--- vim.cmd("syntax on")
+
+-- 起動時にチートシートの開き方を表示
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.defer_fn(function()
+      vim.api.nvim_echo({
+        { " Cheatsheet: ", "MoreMsg" },
+        { "<Space>? ", "Title" },
+        { "または ", "Normal" },
+        { ":Cheatsheet", "Title" },
+        { " で開けます", "Normal" },
+      }, false, {})
+    end, 1000)
+  end,
+})
