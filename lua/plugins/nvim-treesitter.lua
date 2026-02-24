@@ -6,7 +6,7 @@ return {
     config = function()
         require("nvim-treesitter").install({
             "markdown", "markdown_inline",
-            "swift", "typescript", "javascript",
+            "swift", "typescript", "tsx", "javascript",
             "html", "css", "python", "lua",
         })
         vim.api.nvim_create_autocmd("FileType", {
