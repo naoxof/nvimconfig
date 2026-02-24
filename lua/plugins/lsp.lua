@@ -13,7 +13,19 @@ return {
     },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "ts_ls", "lua_ls" },
+        ensure_installed = {
+          "cssls",
+          "docker_compose_language_service",
+          "docker_language_server",
+          "dockerls",
+          "emmet_language_server",
+          "gopls",
+          "html",
+          "jsonls",
+          "lua_ls",
+          "tailwindcss",
+          "ts_ls",
+        },
       })
 
       -- lua_ls: Neovim設定ファイル向けの設定
@@ -24,7 +36,19 @@ return {
           },
         },
       })
-      vim.lsp.enable({ "lua_ls", "ts_ls" })
+      vim.lsp.enable({
+        "cssls",
+        "docker_compose_language_service",
+        "docker_language_server",
+        "dockerls",
+        "emmet_language_server",
+        "gopls",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "tailwindcss",
+        "ts_ls",
+      })
 
       -- 補完の表示設定
       vim.o.completeopt = "menuone,noinsert,popup"
