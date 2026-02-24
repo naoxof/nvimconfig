@@ -2,6 +2,7 @@
   "blink.cmp": { "branch": "main", "commit": "4b18c32adef2898f95cdef6192cbd5796c1a332d" },
   "cheatsheet.nvim": { "branch": "master", "commit": "9716f9aaa94dd1fd6ce59b5aae0e5f25e2a463ef" },
   "dial.nvim": { "branch": "master", "commit": "f2634758455cfa52a8acea6f142dcd6271a1bf57" },
+  "fzy-lua-native": { "branch": "master", "commit": "9d720745d5c2fb563c0d86c17d77612a3519c506" },
   "grug-far.nvim": { "branch": "main", "commit": "275dbedc96e61a6b8d1dfb28ba51586ddd233dcf" },
   "hlchunk.nvim": { "branch": "main", "commit": "3bc2bd7aef28fbed6643534a0fdd0f19966544bc" },
   "hop.nvim": { "branch": "master", "commit": "707049feaca9ae65abb3696eff9aefc7879e66aa" },
@@ -19,5 +20,6 @@
   "telescope.nvim": { "branch": "master", "commit": "5255aa27c422de944791318024167ad5d40aad20" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "vim-commentary": { "branch": "master", "commit": "64a654ef4a20db1727938338310209b6a63f60c9" },
-  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
 }
