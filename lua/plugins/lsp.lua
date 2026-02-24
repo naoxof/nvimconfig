@@ -1,0 +1,27 @@
+return {
+  "neovim/nvim-lspconfig",
+  lazy = false,
+  config = function()
+    -- lua_ls: Neovim設定ファイル向けの設定
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+        },
+      },
+    })
+    vim.lsp.enable({ "lua_ls" })
+
+    -- LSPアタッチ時のキーマップ
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        local opts = { buffer = args.buf }
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      end,
+    })
+  end,
+}
