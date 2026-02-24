@@ -11,6 +11,7 @@ return {
         wilder.cmdline_pipeline({
           fuzzy = 1,
           fuzzy_filter = wilder.lua_fzy_filter(),
+          use_python = 0,
         }),
         wilder.vim_search_pipeline()
       ),
