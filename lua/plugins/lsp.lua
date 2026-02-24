@@ -41,6 +41,9 @@ return {
 
           -- LSP自動補完を有効化（autotrigger = true で入力中に自動表示）
           vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
+
+          -- Ctrl+Space で手動補完トリガー
+          vim.keymap.set("i", "<C-Space>", "<C-x><C-o>", opts)
         end,
       })
     end,
