@@ -144,6 +144,34 @@ vim.keymap.set('t', '<C-W><C-L>', '<cmd>wincmd l<cr>', { silent = true })
 vim.keymap.set('t', '<C-W>l', '<cmd>wincmd l<cr>', { silent = true })
 
 
+------------------------------------------------------------------------------
+-- ファイルパスをクリップボードにコピーするコマンド
+------------------------------------------------------------------------------
+
+vim.api.nvim_create_user_command('CopyFilePath', function()
+  local path = vim.fn.fnamemodify(vim.fn.expand('%'), ':~:.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, {})
+
+vim.api.nvim_create_user_command('CopyAbsFilePath', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, {})
+
+vim.api.nvim_create_user_command('CopyFilePathAndLineNumber', function()
+  local path = vim.fn.fnamemodify(vim.fn.expand('%'), ':~:.') .. ':' .. vim.fn.line('.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, {})
+
+vim.api.nvim_create_user_command('CopyAbsFilePathAndLineNumber', function()
+  local path = vim.fn.expand('%:p') .. ':' .. vim.fn.line('.')
+  vim.fn.setreg('+', path)
+  vim.notify('Copied: ' .. path)
+end, {})
+
 require("config.lazy")
 
 -- 起動時にチートシートの開き方を表示
