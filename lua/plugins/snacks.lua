@@ -12,6 +12,12 @@ return {
         trash = true, -- Use the system trash when deleting files
     },
     picker = {
+      sources = {
+        files = { hidden = true },
+        grep = { hidden = true },
+        smart = { hidden = true },
+        explorer = { hidden = true },
+      },
     }
   }
 }
