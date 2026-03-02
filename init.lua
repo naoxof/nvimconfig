@@ -21,6 +21,9 @@ vim.o.smartindent = true
 -- 括弧入力時の対応する括弧を表示
 vim.o.showmatch = true
 
+-- 新しいウィンドウを右側に開く
+vim.o.splitright = true
+
 -- シンタックスハイライト有効化
 -- Lua では :syntax on 相当を実行させるなら下記のように書けます
 vim.cmd('syntax enable')
@@ -35,6 +38,9 @@ vim.o.expandtab = true
 -- タブ幅設定
 vim.o.tabstop = 4       -- 行頭以外のTab表示幅
 vim.o.shiftwidth = 4    -- 自動インデント等で使われるTab幅
+
+-- C-w C-n で右側に新しいバッファを開く
+vim.keymap.set('n', '<C-w>n', '<cmd>vnew<CR>', { silent = true })
 
 -- ESCを2回押した時に検索ハイライトを消す
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR>', { silent = true })
