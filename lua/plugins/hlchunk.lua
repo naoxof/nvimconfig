@@ -1,5 +1,6 @@
 return {
   "shellRaining/hlchunk.nvim",
+  cond = function() return not vim.g.vscode end,
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("hlchunk").setup({
